@@ -1,0 +1,150 @@
+package statusio
+
+import "time"
+
+type Maintenance struct {
+	StatuspageID              string   `json:"statuspage_id"`
+	Components                []string `json:"components"`
+	Containers                []string `json:"containers"`
+	AllInfrastructureAffected int      `json:"all_infrastructure_affected,omitempty"`
+	Automation                int      `json:"automation"`
+	MaintenanceName           string   `json:"maintenance_name"`
+	MaintenanceDetails        string   `json:"maintenance_details"`
+	DatePlannedStart          string   `json:"date_planned_start"`
+	TimePlannedStart          string   `json:"time_planned_start"`
+	DatePlannedEnd            string   `json:"date_planned_end"`
+	TimePlannedEnd            string   `json:"time_planned_end"`
+	MaintenanceNotifyNow      int      `json:"maintenance_notify_now"`
+	MaintenanceNotify72Hr     int      `json:"maintenance_notify_72_hr"`
+	MaintenanceNotify24Hr     int      `json:"maintenance_notify_24_hr"`
+	MaintenanceNotify1Hr      int      `json:"maintenance_notify_1_hr"`
+}
+
+type MaintenanceContol struct {
+	StatuspageID       string `json:"statuspage_id"`
+	MaintenanceID      string `json:"maintenance_id"`
+	MaintenanceDetails string `json:"maintenance_details,omitempty"`
+	NotifyEmail        int    `json:"notify_email"`
+	NotifySms          int    `json:"notify_sms"`
+	NotifyWebhook      int    `json:"notify_webhook"`
+	Social             int    `json:"social"`
+	Irc                int    `json:"irc,omitempty"`
+	Hipchat            int    `json:"hipchat,omitempty"`
+	Slack              int    `json:"slack,omitempty"`
+}
+
+type MaintenanceResponse struct {
+	V                  int    `json:"__v"`
+	ID                 string `json:"_id"`
+	ComponentsAffected []struct {
+		V          int    `json:"__v"`
+		ID         string `json:"_id"`
+		Position   int    `json:"position"`
+		Statuspage string `json:"statuspage"`
+		History    []struct {
+			MessageID string    `json:"message_id"`
+			ID        string    `json:"_id"`
+			Datetime  time.Time `json:"datetime"`
+		} `json:"history"`
+		Containers []string `json:"containers"`
+		Name       string   `json:"name"`
+	} `json:"components_affected"`
+	ContainersAffected []struct {
+		V        int    `json:"__v"`
+		ID       string `json:"_id"`
+		Name     string `json:"name"`
+		Location string `json:"location"`
+	} `json:"containers_affected"`
+	DatetimeOpen         time.Time `json:"datetime_open"`
+	DatetimePlannedEnd   time.Time `json:"datetime_planned_end"`
+	DatetimePlannedStart time.Time `json:"datetime_planned_start"`
+	Kind                 string    `json:"kind"`
+	Messages             []struct {
+		Details     string    `json:"details"`
+		Source      string    `json:"source"`
+		State       int       `json:"state"`
+		Status      int       `json:"status"`
+		Statuspage  string    `json:"statuspage"`
+		Maintenance string    `json:"maintenance"`
+		IP          string    `json:"ip"`
+		ID          string    `json:"_id"`
+		V           int       `json:"__v"`
+		Datetime    time.Time `json:"datetime"`
+		Containers  []string  `json:"containers"`
+		Components  []string  `json:"components"`
+	} `json:"messages"`
+	Name       string `json:"name"`
+	Statuspage string `json:"statuspage"`
+}
+
+type MaintenanceListResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result struct {
+		ActiveMaintenances   []MaintenanceResponse `json:"active_maintenances"`
+		UpcomingMaintenances []MaintenanceResponse `json:"upcoming_maintenances"`
+		ResolvedMaintenances []MaintenanceResponse `json:"resolved_maintenances"`
+	} `json:"result"`
+}
+
+type MaintenanceMessageResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result struct {
+		Details     string    `json:"details"`
+		Source      string    `json:"source"`
+		State       int       `json:"state"`
+		Statuspage  string    `json:"statuspage"`
+		Maintenance string    `json:"maintenance"`
+		IP          string    `json:"ip"`
+		ID          string    `json:"_id"`
+		V           int       `json:"__v"`
+		Datetime    time.Time `json:"datetime"`
+		Containers  []string  `json:"containers"`
+		Components  []string  `json:"components"`
+	} `json:"result"`
+}
+
+type MaintenanceScheduleResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result string `json:"result"`
+}
+
+type MaintenanceStartResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result bool `json:"result"`
+}
+
+type MaintenanceUpdateResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result bool `json:"result"`
+}
+
+type MaintenanceFinishResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result bool `json:"result"`
+}
+
+type MaintenanceDeleteResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result bool `json:"result"`
+}
