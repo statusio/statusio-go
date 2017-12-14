@@ -4,9 +4,8 @@ import "time"
 
 type Maintenance struct {
 	StatuspageID              string   `json:"statuspage_id"`
-	Components                []string `json:"components"`
-	Containers                []string `json:"containers"`
 	AllInfrastructureAffected int      `json:"all_infrastructure_affected,omitempty"`
+	InfrastructureAffected    []string `json:"infrastructure_affected"`
 	Automation                int      `json:"automation"`
 	MaintenanceName           string   `json:"maintenance_name"`
 	MaintenanceDetails        string   `json:"maintenance_details"`

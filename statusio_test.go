@@ -13,6 +13,7 @@ var STATUSPAGE_ID = os.Getenv("STATUSPAGE_ID")
 var METRIC_ID = os.Getenv("METRIC_ID")
 var COMPONENTS = []string{os.Getenv("COMPONENT")}
 var CONTAINERS = []string{os.Getenv("CONTAINER")}
+ver COMPONENT_CONTAINER_COMBO = []string{os.Getenv("COMPONENT")+"-"+os.Getenv("CONTAINER")}
 
 var (
 	api *statusio.StatusioApi
@@ -36,7 +37,7 @@ func Test_StatusioApi_SubscribersAdd(t *testing.T) {
 	result, err := api.SubscriberAdd(statusio.Subscriber{
 		StatuspageID: STATUSPAGE_ID,
 		Method:       "email",
-		Address:      "phillip.j.fry@planet-express.com",
+		Address:      "test@example.com",
 		Granular:     "",
 	})
 
@@ -52,7 +53,7 @@ func Test_StatusioApi_SubscribersUpdate(t *testing.T) {
 		StatuspageID: STATUSPAGE_ID,
 		SubscriberID: id1,
 		Method:       "email",
-		Address:      "phillip.j.fry.1@planet-express.com",
+		Address:      "test@example.com",
 		Granular:     "",
 	})
 
@@ -130,8 +131,7 @@ func Test_StatusioApi_Metric_Update(t *testing.T) {
 func Test_StatusioApi_Maintenance_Schedule(t *testing.T) {
 	result, err := api.MaintenanceSchedule(statusio.Maintenance{
 		StatuspageID:       STATUSPAGE_ID,
-		Components:         COMPONENTS,
-		Containers:         CONTAINERS,
+		InfrastructureAffected: COMPONENT_CONTAINER_COMBO,
 		MaintenanceName:    "Automated Test",
 		MaintenanceDetails: "Automated Test Details",
 		DatePlannedStart:   time.Now().Add(1 * time.Hour).Format("2006/01/02"),
