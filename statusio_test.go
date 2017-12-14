@@ -13,7 +13,7 @@ var STATUSPAGE_ID = os.Getenv("STATUSPAGE_ID")
 var METRIC_ID = os.Getenv("METRIC_ID")
 var COMPONENTS = []string{os.Getenv("COMPONENT")}
 var CONTAINERS = []string{os.Getenv("CONTAINER")}
-ver COMPONENT_CONTAINER_COMBO = []string{os.Getenv("COMPONENT")+"-"+os.Getenv("CONTAINER")}
+var COMPONENT_CONTAINER_COMBO = []string{os.Getenv("COMPONENT")+"-"+os.Getenv("CONTAINER")}
 
 var (
 	api *statusio.StatusioApi
