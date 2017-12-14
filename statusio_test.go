@@ -2,18 +2,17 @@ package statusio_test
 
 import (
 	statusio "."
-	"os"
 	"testing"
 	"time"
 )
 
-var API_ID = os.Getenv("API_ID")
-var API_KEY = os.Getenv("API_KEY")
-var STATUSPAGE_ID = os.Getenv("STATUSPAGE_ID")
-var METRIC_ID = os.Getenv("METRIC_ID")
-var COMPONENTS = []string{os.Getenv("COMPONENT")}
-var CONTAINERS = []string{os.Getenv("CONTAINER")}
-var COMPONENT_CONTAINER_COMBO = []string{os.Getenv("COMPONENT")+"-"+os.Getenv("CONTAINER")}
+var API_ID = ""
+var API_KEY = ""
+var STATUSPAGE_ID = "568d8a3e3cada8c2490000dd"
+var METRIC_ID = "568d8ab5efe35d412f0006f8"
+var COMPONENTS = []string{"568d8a3e3cada8c2490000ed"}
+var CONTAINERS = []string{"568d8a3e3cada8c2490000ec"}
+var COMPONENT_CONTAINER_COMBO = []string{"568d8a3e3cada8c2490000ed-568d8a3e3cada8c2490000ec"}
 
 var (
 	api *statusio.StatusioApi

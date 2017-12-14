@@ -2,7 +2,6 @@ Statusio
 ====================
 
 [![GoDoc](https://godoc.org/github.com/statusio/statusio-go?status.png)](https://godoc.org/github.com/statusio/statusio-go)
-[![TravisCI](https://travis-ci.org/statusio/statusio-go.svg)](https://travis-ci.org/statusio/statusio-go)
 
 
 Statusio is a simple, transparent Go package for accessing version 2.0 of Status.io API.
