@@ -40,11 +40,6 @@ type MaintenanceResponse struct {
 		ID         string `json:"_id"`
 		Position   int    `json:"position"`
 		Statuspage string `json:"statuspage"`
-		History    []struct {
-			MessageID string    `json:"message_id"`
-			ID        string    `json:"_id"`
-			Datetime  time.Time `json:"datetime"`
-		} `json:"history"`
 		Containers []string `json:"containers"`
 		Name       string   `json:"name"`
 	} `json:"components_affected"`

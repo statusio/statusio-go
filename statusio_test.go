@@ -225,8 +225,7 @@ func Test_StatusioApi_Maintenance_Delete(t *testing.T) {
 func Test_StatusioApi_Incident_Create(t *testing.T) {
 	result, err := api.IncidentCreate(statusio.Incident{
 		StatuspageID:    STATUSPAGE_ID,
-		Components:      COMPONENTS,
-		Containers:      CONTAINERS,
+		InfrastructureAffected: COMPONENT_CONTAINER_COMBO,
 		IncidentName:    "Automated Test",
 		IncidentDetails: "Automated Test Details",
 		CurrentState:    statusio.STATE_INVESTIGATING,

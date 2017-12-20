@@ -5,8 +5,6 @@ import "time"
 type Incident struct {
 	StatuspageID              string   `json:"statuspage_id"`
 	IncidentID                string   `json:"incident_id,omitempty"`
-	Components                []string `json:"components,omitempty"`
-	Containers                []string `json:"containers,omitempty"`
 	IncidentName              string   `json:"incident_name,omitempty"`
 	IncidentDetails           string   `json:"incident_details"`
 	NotifyEmail               int      `json:"notify_email"`
@@ -19,6 +17,7 @@ type Incident struct {
 	CurrentStatus             int      `json:"current_status,omitempty"`
 	CurrentState              int      `json:"current_state,omitempty"`
 	AllInfrastructureAffected int      `json:"all_infrastructure_affected,omitempty"`
+	InfrastructureAffected    []string `json:"infrastructure_affected"`
 }
 
 type IncidentResponse struct {
@@ -29,11 +28,6 @@ type IncidentResponse struct {
 		ID         string `json:"_id"`
 		Position   int    `json:"position"`
 		Statuspage string `json:"statuspage"`
-		History    []struct {
-			MessageID string    `json:"message_id"`
-			ID        string    `json:"_id"`
-			Datetime  time.Time `json:"datetime"`
-		} `json:"history"`
 		Containers []string `json:"containers"`
 		Name       string   `json:"name"`
 	} `json:"components_affected"`
