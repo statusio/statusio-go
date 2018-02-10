@@ -10,8 +10,8 @@ var API_ID = ""
 var API_KEY = ""
 var STATUSPAGE_ID = "568d8a3e3cada8c2490000dd"
 var METRIC_ID = "568d8ab5efe35d412f0006f8"
-var COMPONENTS = []string{"568d8a3e3cada8c2490000ed"}
-var CONTAINERS = []string{"568d8a3e3cada8c2490000ec"}
+var COMPONENT = "568d8a3e3cada8c2490000ed"
+var CONTAINER = "568d8a3e3cada8c2490000ec"
 var COMPONENT_CONTAINER_COMBO = []string{"568d8a3e3cada8c2490000ed-568d8a3e3cada8c2490000ec"}
 
 var (
@@ -313,8 +313,8 @@ func Test_StatusioApi_Component_List(t *testing.T) {
 func Test_StatusioApi_Component_Update(t *testing.T) {
 	_, err := api.ComponentUpdate(statusio.ComponentStatus{
 		StatuspageID:  STATUSPAGE_ID,
-		Components:    COMPONENTS,
-		Containers:    CONTAINERS,
+		Component:    COMPONENT,
+		Container:    CONTAINER,
 		Details:       "Automated Test Update",
 		CurrentStatus: statusio.STATUS_DEGRADED_PERFORMANCE,
 	})

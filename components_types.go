@@ -2,8 +2,8 @@ package statusio
 
 type ComponentStatus struct {
 	StatuspageID  string   `json:"statuspage_id"`
-	Components    []string `json:"components"`
-	Containers    []string `json:"containers"`
+	Component     string   `json:"component"`
+	Container     string   `json:"container"`
 	Details       string   `json:"details"`
 	CurrentStatus int      `json:"current_status"`
 }
