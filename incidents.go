@@ -13,8 +13,24 @@ func (a StatusioApi) IncidentList(statuspage_id string) (r IncidentListResponse,
 	return r, err
 }
 
+func (a StatusioApi) IncidentListByID(statuspage_id string) (r IncidentListByIDResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("incidents/%s", statuspage_id), nil, &r)
+	if r.Status.Error != "no" {
+		err = errors.New(r.Status.Message)
+	}
+	return r, err
+}
+
 func (a StatusioApi) IncidentMessage(statuspage_id string, message_id string) (r IncidentMessageResponse, err error) {
 	err = a.apiRequest("GET", fmt.Sprintf("incident/message/%s/%s", statuspage_id, message_id), nil, &r)
+	if r.Status.Error != "no" {
+		err = errors.New(r.Status.Message)
+	}
+	return r, err
+}
+
+func (a StatusioApi) IncidentSingle(statuspage_id string, incident_id string) (r IncidentResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("incident/%s/%s", statuspage_id, incident_id), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}
