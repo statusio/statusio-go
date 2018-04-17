@@ -79,6 +79,14 @@ type IncidentListByIDResponse struct {
 	} `json:"result"`
 }
 
+type IncidentSingleResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result []IncidentResponse `json:"result"`
+}
+
 type IncidentMessageResponse struct {
 	Status struct {
 		Error   string `json:"error"`

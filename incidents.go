@@ -29,7 +29,7 @@ func (a StatusioApi) IncidentMessage(statuspage_id string, message_id string) (r
 	return r, err
 }
 
-func (a StatusioApi) IncidentSingle(statuspage_id string, incident_id string) (r IncidentResponse, err error) {
+func (a StatusioApi) IncidentSingle(statuspage_id string, incident_id string) (r IncidentSingleResponse, err error) {
 	err = a.apiRequest("GET", fmt.Sprintf("incident/%s/%s", statuspage_id, incident_id), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)

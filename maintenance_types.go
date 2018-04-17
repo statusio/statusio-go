@@ -95,6 +95,14 @@ type MaintenanceListByIDResponse struct {
 	} `json:"result"`
 }
 
+type MaintenanceSingleResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result []MaintenanceResponse `json:"result"`
+}
+
 type MaintenanceMessageResponse struct {
 	Status struct {
 		Error   string `json:"error"`

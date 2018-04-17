@@ -29,7 +29,7 @@ func (a StatusioApi) MaintenanceMessage(statuspage_id string, message_id string)
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceSingle(statuspage_id string, maintenance_id string) (r MaintenanceResponse, err error) {
+func (a StatusioApi) MaintenanceSingle(statuspage_id string, maintenance_id string) (r MaintenanceSingleResponse, err error) {
 	err = a.apiRequest("GET", fmt.Sprintf("maintenance/%s/%s", statuspage_id, maintenance_id), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
