@@ -29,7 +29,7 @@ statusSummary, err := api.StatusSummary("your-statuspage-id")
 if err != nil {
     log.Fatal(err)
 }
-fmt.Println(result.Result.Status[0].Containers[0].Status)
+fmt.Println(statusSummary.Result.Status[0].Containers[0].Status)
 ````
 
 Endpoints
