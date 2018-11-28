@@ -4,32 +4,32 @@ import "time"
 
 type Maintenance struct {
 	StatuspageID              string   `json:"statuspage_id"`
-	AllInfrastructureAffected int      `json:"all_infrastructure_affected,omitempty"`
+	AllInfrastructureAffected string      `json:"all_infrastructure_affected,omitempty"`
 	InfrastructureAffected    []string `json:"infrastructure_affected"`
-	Automation                int      `json:"automation"`
+	Automation                string      `json:"automation"`
 	MaintenanceName           string   `json:"maintenance_name"`
 	MaintenanceDetails        string   `json:"maintenance_details"`
 	DatePlannedStart          string   `json:"date_planned_start"`
 	TimePlannedStart          string   `json:"time_planned_start"`
 	DatePlannedEnd            string   `json:"date_planned_end"`
 	TimePlannedEnd            string   `json:"time_planned_end"`
-	MaintenanceNotifyNow      int      `json:"maintenance_notify_now"`
-	MaintenanceNotify72Hr     int      `json:"maintenance_notify_72_hr"`
-	MaintenanceNotify24Hr     int      `json:"maintenance_notify_24_hr"`
-	MaintenanceNotify1Hr      int      `json:"maintenance_notify_1_hr"`
+	MaintenanceNotifyNow      string   `json:"maintenance_notify_now"`
+	MaintenanceNotify72Hr     string   `json:"maintenance_notify_72_hr"`
+	MaintenanceNotify24Hr     string   `json:"maintenance_notify_24_hr"`
+	MaintenanceNotify1Hr      string   `json:"maintenance_notify_1_hr"`
 }
 
 type MaintenanceContol struct {
 	StatuspageID       string `json:"statuspage_id"`
 	MaintenanceID      string `json:"maintenance_id"`
 	MaintenanceDetails string `json:"maintenance_details,omitempty"`
-	NotifyEmail        int    `json:"notify_email"`
-	NotifySms          int    `json:"notify_sms"`
-	NotifyWebhook      int    `json:"notify_webhook"`
-	Social             int    `json:"social"`
-	Irc                int    `json:"irc,omitempty"`
-	Hipchat            int    `json:"hipchat,omitempty"`
-	Slack              int    `json:"slack,omitempty"`
+	NotifyEmail        string    `json:"notify_email"`
+	NotifySms          string    `json:"notify_sms"`
+	NotifyWebhook      string    `json:"notify_webhook"`
+	Social             string    `json:"social"`
+	Irc                string    `json:"irc,omitempty"`
+	Hipchat            string    `json:"hipchat,omitempty"`
+	Slack              string    `json:"slack,omitempty"`
 }
 
 type MaintenanceResponse struct {

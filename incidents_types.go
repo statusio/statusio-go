@@ -7,16 +7,16 @@ type Incident struct {
 	IncidentID                string   `json:"incident_id,omitempty"`
 	IncidentName              string   `json:"incident_name,omitempty"`
 	IncidentDetails           string   `json:"incident_details"`
-	NotifyEmail               int      `json:"notify_email"`
-	NotifySms                 int      `json:"notify_sms"`
-	NotifyWebhook             int      `json:"notify_webhook"`
-	Social                    int      `json:"social"`
-	Irc                       int      `json:"irc,omitempty"`
-	Hipchat                   int      `json:"hipchat,omitempty"`
-	Slack                     int      `json:"slack,omitempty"`
+	NotifyEmail               string      `json:"notify_email"`
+	NotifySms                 string      `json:"notify_sms"`
+	NotifyWebhook             string      `json:"notify_webhook"`
+	Social                    string      `json:"social"`
+	Irc                       string      `json:"irc,omitempty"`
+	Hipchat                   string      `json:"hipchat,omitempty"`
+	Slack                     string      `json:"slack,omitempty"`
 	CurrentStatus             int      `json:"current_status,omitempty"`
 	CurrentState              int      `json:"current_state,omitempty"`
-	AllInfrastructureAffected int      `json:"all_infrastructure_affected,omitempty"`
+	AllInfrastructureAffected string      `json:"all_infrastructure_affected,omitempty"`
 	InfrastructureAffected    []string `json:"infrastructure_affected"`
 }
 

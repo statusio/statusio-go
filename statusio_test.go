@@ -133,10 +133,16 @@ func Test_StatusioApi_Maintenance_Schedule(t *testing.T) {
 		InfrastructureAffected: COMPONENT_CONTAINER_COMBO,
 		MaintenanceName:    "Automated Test",
 		MaintenanceDetails: "Automated Test Details",
-		DatePlannedStart:   time.Now().Add(1 * time.Hour).Format("2006/01/02"),
+		DatePlannedStart:   time.Now().Add(1 * time.Hour).Format("2020/01/02"),
 		TimePlannedStart:   time.Now().Add(1 * time.Hour).Format("15:04"),
-		DatePlannedEnd:     time.Now().Add(2 * time.Hour).Format("2006/01/02"),
+		DatePlannedEnd:     time.Now().Add(2 * time.Hour).Format("2020/01/02"),
 		TimePlannedEnd:     time.Now().Add(2 * time.Hour).Format("15:04"),
+    MaintenanceNotifyNow: "1",
+    MaintenanceNotify1Hr: "1",
+    MaintenanceNotify24Hr: "1",
+    MaintenanceNotify72Hr: "1",
+    Automation: "1",
+    AllInfrastructureAffected: "1",
 	})
 
 	if err != nil {
@@ -177,7 +183,10 @@ func Test_StatusioApi_Maintenance_Start(t *testing.T) {
 		StatuspageID:       STATUSPAGE_ID,
 		MaintenanceID:      id1,
 		MaintenanceDetails: "Automated Test MaintenanceDetails START",
-		NotifyEmail:        0,
+		NotifyEmail:        "0",
+		NotifySms:        "0",
+		NotifyWebhook:        "0",
+		Social:        "0",
 	})
 
 	if err != nil {
@@ -190,7 +199,10 @@ func Test_StatusioApi_Maintenance_Update(t *testing.T) {
 		StatuspageID:       STATUSPAGE_ID,
 		MaintenanceID:      id1,
 		MaintenanceDetails: "Automated Test MaintenanceDetails UPDATE",
-		NotifyEmail:        0,
+		NotifyEmail:        "0",
+		NotifySms:        "0",
+		NotifyWebhook:        "0",
+		Social:        "0",
 	})
 
 	if err != nil {
@@ -203,7 +215,10 @@ func Test_StatusioApi_Maintenance_Finish(t *testing.T) {
 		StatuspageID:       STATUSPAGE_ID,
 		MaintenanceID:      id1,
 		MaintenanceDetails: "Automated Test MaintenanceDetails FINISH",
-		NotifyEmail:        0,
+		NotifyEmail:        "0",
+		NotifySms:        "0",
+		NotifyWebhook:        "0",
+		Social:        "0",
 	})
 
 	if err != nil {
@@ -225,11 +240,16 @@ func Test_StatusioApi_Maintenance_Delete(t *testing.T) {
 func Test_StatusioApi_Incident_Create(t *testing.T) {
 	result, err := api.IncidentCreate(statusio.Incident{
 		StatuspageID:    STATUSPAGE_ID,
+    AllInfrastructureAffected: "1",
 		InfrastructureAffected: COMPONENT_CONTAINER_COMBO,
 		IncidentName:    "Automated Test",
 		IncidentDetails: "Automated Test Details",
 		CurrentState:    statusio.STATE_INVESTIGATING,
 		CurrentStatus:   statusio.STATUS_OPERATIONAL,
+		NotifyEmail:        "0",
+		NotifySms:        "0",
+		NotifyWebhook:        "0",
+		Social:        "0",
 	})
 
 	if err != nil {
@@ -272,6 +292,10 @@ func Test_StatusioApi_Incident_Update(t *testing.T) {
 		IncidentDetails: "Automated Test Details Updated",
 		CurrentState:    statusio.STATE_IDENTIFIED,
 		CurrentStatus:   statusio.STATUS_OPERATIONAL,
+		NotifyEmail:        "0",
+		NotifySms:        "0",
+		NotifyWebhook:        "0",
+		Social:        "0",
 	})
 
 	if err != nil {
@@ -284,6 +308,10 @@ func Test_StatusioApi_Incident_Resolve(t *testing.T) {
 		StatuspageID:    STATUSPAGE_ID,
 		IncidentID:      id1,
 		IncidentDetails: "Automated Test Details Resolved",
+		NotifyEmail:        "0",
+		NotifySms:        "0",
+		NotifyWebhook:        "0",
+		Social:        "0",
 	})
 
 	if err != nil {
