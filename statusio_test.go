@@ -179,7 +179,7 @@ func Test_StatusioApi_Maintenance_Message(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Start(t *testing.T) {
-	_, err := api.MaintenanceStart(statusio.MaintenanceContol{
+	_, err := api.MaintenanceStart(statusio.MaintenanceControl{
 		StatuspageID:       STATUSPAGE_ID,
 		MaintenanceID:      id1,
 		MaintenanceDetails: "Automated Test MaintenanceDetails START",
@@ -195,7 +195,7 @@ func Test_StatusioApi_Maintenance_Start(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Update(t *testing.T) {
-	_, err := api.MaintenanceUpdate(statusio.MaintenanceContol{
+	_, err := api.MaintenanceUpdate(statusio.MaintenanceControl{
 		StatuspageID:       STATUSPAGE_ID,
 		MaintenanceID:      id1,
 		MaintenanceDetails: "Automated Test MaintenanceDetails UPDATE",
@@ -211,7 +211,7 @@ func Test_StatusioApi_Maintenance_Update(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Finish(t *testing.T) {
-	_, err := api.MaintenanceFinish(statusio.MaintenanceContol{
+	_, err := api.MaintenanceFinish(statusio.MaintenanceControl{
 		StatuspageID:       STATUSPAGE_ID,
 		MaintenanceID:      id1,
 		MaintenanceDetails: "Automated Test MaintenanceDetails FINISH",
@@ -227,7 +227,7 @@ func Test_StatusioApi_Maintenance_Finish(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Delete(t *testing.T) {
-	_, err := api.MaintenanceDelete(statusio.MaintenanceContol{
+	_, err := api.MaintenanceDelete(statusio.MaintenanceControl{
 		StatuspageID:  STATUSPAGE_ID,
 		MaintenanceID: id1,
 	})

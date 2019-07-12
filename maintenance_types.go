@@ -19,7 +19,7 @@ type Maintenance struct {
 	MaintenanceNotify1Hr      string   `json:"maintenance_notify_1_hr"`
 }
 
-type MaintenanceContol struct {
+type MaintenanceControl struct {
 	StatuspageID       string `json:"statuspage_id"`
 	MaintenanceID      string `json:"maintenance_id"`
 	MaintenanceDetails string `json:"maintenance_details,omitempty"`

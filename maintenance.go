@@ -45,7 +45,7 @@ func (a StatusioApi) MaintenanceSchedule(task Maintenance) (r MaintenanceSchedul
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceStart(control MaintenanceContol) (r MaintenanceStartResponse, err error) {
+func (a StatusioApi) MaintenanceStart(control MaintenanceControl) (r MaintenanceStartResponse, err error) {
 	err = a.apiRequest("POST", "maintenance/start", control, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
@@ -53,7 +53,7 @@ func (a StatusioApi) MaintenanceStart(control MaintenanceContol) (r MaintenanceS
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceUpdate(control MaintenanceContol) (r MaintenanceUpdateResponse, err error) {
+func (a StatusioApi) MaintenanceUpdate(control MaintenanceControl) (r MaintenanceUpdateResponse, err error) {
 	err = a.apiRequest("POST", "maintenance/update", control, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
@@ -61,7 +61,7 @@ func (a StatusioApi) MaintenanceUpdate(control MaintenanceContol) (r Maintenance
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceFinish(control MaintenanceContol) (r MaintenanceFinishResponse, err error) {
+func (a StatusioApi) MaintenanceFinish(control MaintenanceControl) (r MaintenanceFinishResponse, err error) {
 	err = a.apiRequest("POST", "maintenance/finish", control, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
@@ -69,7 +69,7 @@ func (a StatusioApi) MaintenanceFinish(control MaintenanceContol) (r Maintenance
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceDelete(control MaintenanceContol) (r MaintenanceDeleteResponse, err error) {
+func (a StatusioApi) MaintenanceDelete(control MaintenanceControl) (r MaintenanceDeleteResponse, err error) {
 	err = a.apiRequest("POST", "maintenance/delete", control, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
