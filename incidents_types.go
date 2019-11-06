@@ -14,8 +14,8 @@ type Incident struct {
 	Irc                       string   `json:"irc,omitempty"`
 	Hipchat                   string   `json:"hipchat,omitempty"`
 	Slack                     string   `json:"slack,omitempty"`
-	CurrentStatus             int      `json:"current_status,omitempty"`
-	CurrentState              int      `json:"current_state,omitempty"`
+	CurrentStatus             Status   `json:"current_status,omitempty"`
+	CurrentState              State    `json:"current_state,omitempty"`
 	AllInfrastructureAffected string   `json:"all_infrastructure_affected,omitempty"`
 	InfrastructureAffected    []string `json:"infrastructure_affected"`
 }
@@ -42,8 +42,8 @@ type IncidentResponse struct {
 	Messages     []struct {
 		Details    string    `json:"details"`
 		Source     string    `json:"source"`
-		State      int       `json:"state"`
-		Status     int       `json:"status"`
+		State      State     `json:"state"`
+		Status     Status    `json:"status"`
 		Statuspage string    `json:"statuspage"`
 		Incident   string    `json:"incident"`
 		IP         string    `json:"ip"`
@@ -98,8 +98,8 @@ type IncidentMessageResponse struct {
 		Details      string    `json:"details"`
 		Source       string    `json:"source"`
 		Social       string    `json:"social"`
-		State        int       `json:"state"`
-		Status       int       `json:"status"`
+		State        State     `json:"state"`
+		Status       Status    `json:"status"`
 		Statuspage   string    `json:"statuspage"`
 		Incident     string    `json:"incident"`
 		IP           string    `json:"ip"`

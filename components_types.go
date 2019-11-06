@@ -5,7 +5,7 @@ type ComponentStatus struct {
 	Component     string `json:"component"`
 	Container     string `json:"container"`
 	Details       string `json:"details"`
-	CurrentStatus int    `json:"current_status"`
+	CurrentStatus Status `json:"current_status"`
 }
 
 type ComponentListResponse struct {

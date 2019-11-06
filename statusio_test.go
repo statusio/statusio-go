@@ -246,8 +246,8 @@ func Test_StatusioApi_Incident_Create(t *testing.T) {
 		InfrastructureAffected:    componentContainerCombination,
 		IncidentName:              "Automated Test",
 		IncidentDetails:           "Automated Test Details",
-		CurrentState:              STATE_INVESTIGATING,
-		CurrentStatus:             STATUS_OPERATIONAL,
+		CurrentState:              StateInvestigating,
+		CurrentStatus:             StatusOperational,
 		NotifyEmail:               "0",
 		NotifySms:                 "0",
 		NotifyWebhook:             "0",
@@ -292,8 +292,8 @@ func Test_StatusioApi_Incident_Update(t *testing.T) {
 		StatuspageID:    statusPageID,
 		IncidentID:      id1,
 		IncidentDetails: "Automated Test Details Updated",
-		CurrentState:    STATE_IDENTIFIED,
-		CurrentStatus:   STATUS_OPERATIONAL,
+		CurrentState:    StateIdentified,
+		CurrentStatus:   StatusOperational,
 		NotifyEmail:     "0",
 		NotifySms:       "0",
 		NotifyWebhook:   "0",
@@ -346,7 +346,7 @@ func Test_StatusioApi_Component_Update(t *testing.T) {
 		Component:     component,
 		Container:     container,
 		Details:       "Automated Test Update",
-		CurrentStatus: STATUS_DEGRADED_PERFORMANCE,
+		CurrentStatus: StatusDegradedPerformance,
 	})
 
 	if err != nil {
