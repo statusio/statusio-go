@@ -7,16 +7,16 @@ type Incident struct {
 	IncidentID                string   `json:"incident_id,omitempty"`
 	IncidentName              string   `json:"incident_name,omitempty"`
 	IncidentDetails           string   `json:"incident_details"`
-	NotifyEmail               string      `json:"notify_email"`
-	NotifySms                 string      `json:"notify_sms"`
-	NotifyWebhook             string      `json:"notify_webhook"`
-	Social                    string      `json:"social"`
-	Irc                       string      `json:"irc,omitempty"`
-	Hipchat                   string      `json:"hipchat,omitempty"`
-	Slack                     string      `json:"slack,omitempty"`
+	NotifyEmail               string   `json:"notify_email"`
+	NotifySms                 string   `json:"notify_sms"`
+	NotifyWebhook             string   `json:"notify_webhook"`
+	Social                    string   `json:"social"`
+	Irc                       string   `json:"irc,omitempty"`
+	Hipchat                   string   `json:"hipchat,omitempty"`
+	Slack                     string   `json:"slack,omitempty"`
 	CurrentStatus             int      `json:"current_status,omitempty"`
 	CurrentState              int      `json:"current_state,omitempty"`
-	AllInfrastructureAffected string      `json:"all_infrastructure_affected,omitempty"`
+	AllInfrastructureAffected string   `json:"all_infrastructure_affected,omitempty"`
 	InfrastructureAffected    []string `json:"infrastructure_affected"`
 }
 
@@ -24,10 +24,10 @@ type IncidentResponse struct {
 	V                  int    `json:"__v"`
 	ID                 string `json:"_id"`
 	ComponentsAffected []struct {
-		V          int    `json:"__v"`
-		ID         string `json:"_id"`
-		Position   int    `json:"position"`
-		Statuspage string `json:"statuspage"`
+		V          int      `json:"__v"`
+		ID         string   `json:"_id"`
+		Position   int      `json:"position"`
+		Statuspage string   `json:"statuspage"`
 		Containers []string `json:"containers"`
 		Name       string   `json:"name"`
 	} `json:"components_affected"`

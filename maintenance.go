@@ -5,32 +5,32 @@ import (
 	"fmt"
 )
 
-func (a StatusioApi) MaintenanceList(statuspage_id string) (r MaintenanceListResponse, err error) {
-	err = a.apiRequest("GET", fmt.Sprintf("maintenance/list/%s", statuspage_id), nil, &r)
+func (a StatusioApi) MaintenanceList(statusPageID string) (r MaintenanceListResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("maintenance/list/%s", statusPageID), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceListByID(statuspage_id string) (r MaintenanceListByIDResponse, err error) {
-	err = a.apiRequest("GET", fmt.Sprintf("maintenances/%s", statuspage_id), nil, &r)
+func (a StatusioApi) MaintenanceListByID(statusPageID string) (r MaintenanceListByIDResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("maintenances/%s", statusPageID), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceMessage(statuspage_id string, message_id string) (r MaintenanceMessageResponse, err error) {
-	err = a.apiRequest("GET", fmt.Sprintf("maintenance/message/%s/%s", statuspage_id, message_id), nil, &r)
+func (a StatusioApi) MaintenanceMessage(statusPageID, messageID string) (r MaintenanceMessageResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("maintenance/message/%s/%s", statusPageID, messageID), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceSingle(statuspage_id string, maintenance_id string) (r MaintenanceSingleResponse, err error) {
-	err = a.apiRequest("GET", fmt.Sprintf("maintenance/%s/%s", statuspage_id, maintenance_id), nil, &r)
+func (a StatusioApi) MaintenanceSingle(statusPageID, maintenanceID string) (r MaintenanceSingleResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("maintenance/%s/%s", statusPageID, maintenanceID), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}

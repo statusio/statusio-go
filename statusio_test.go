@@ -1,31 +1,33 @@
-package statusio_test
+package statusio
 
 import (
-	statusio "."
 	"testing"
 	"time"
 )
 
-var API_ID = ""
-var API_KEY = ""
-var STATUSPAGE_ID = "568d8a3e3cada8c2490000dd"
-var METRIC_ID = "568d8ab5efe35d412f0006f8"
-var COMPONENT = "568d8a3e3cada8c2490000ed"
-var CONTAINER = "568d8a3e3cada8c2490000ec"
-var COMPONENT_CONTAINER_COMBO = []string{"568d8a3e3cada8c2490000ed-568d8a3e3cada8c2490000ec"}
+const (
+	apiID        = ""
+	apiKey       = ""
+	statusPageID = "568d8a3e3cada8c2490000dd"
+	metricID     = "568d8ab5efe35d412f0006f8"
+	component    = "568d8a3e3cada8c2490000ed"
+	container    = "568d8a3e3cada8c2490000ec"
+)
+
+var componentContainerCombination = []string{"568d8a3e3cada8c2490000ed-568d8a3e3cada8c2490000ec"}
 
 var (
-	api *statusio.StatusioApi
+	api *StatusioApi
 	id1 string
 	id2 string
 )
 
 func init() {
-	api = statusio.NewStatusioApi(API_ID, API_KEY)
+	api = NewStatusioApi(apiID, apiKey)
 }
 
 func Test_StatusioApi_StatusSummary(t *testing.T) {
-	_, err := api.StatusSummary(STATUSPAGE_ID)
+	_, err := api.StatusSummary(statusPageID)
 
 	if err != nil {
 		t.Fatal(err)
@@ -33,8 +35,8 @@ func Test_StatusioApi_StatusSummary(t *testing.T) {
 }
 
 func Test_StatusioApi_SubscribersAdd(t *testing.T) {
-	result, err := api.SubscriberAdd(statusio.Subscriber{
-		StatuspageID: STATUSPAGE_ID,
+	result, err := api.SubscriberAdd(Subscriber{
+		StatuspageID: statusPageID,
 		Method:       "email",
 		Address:      "test@example.com",
 		Granular:     "",
@@ -48,8 +50,8 @@ func Test_StatusioApi_SubscribersAdd(t *testing.T) {
 }
 
 func Test_StatusioApi_SubscribersUpdate(t *testing.T) {
-	_, err := api.SubscriberUpdate(statusio.Subscriber{
-		StatuspageID: STATUSPAGE_ID,
+	_, err := api.SubscriberUpdate(Subscriber{
+		StatuspageID: statusPageID,
 		SubscriberID: id1,
 		Method:       "email",
 		Address:      "test@example.com",
@@ -62,7 +64,7 @@ func Test_StatusioApi_SubscribersUpdate(t *testing.T) {
 }
 
 func Test_StatusioApi_SubscribersList(t *testing.T) {
-	result, err := api.SubscriberList(STATUSPAGE_ID)
+	result, err := api.SubscriberList(statusPageID)
 
 	if err != nil {
 		t.Fatal(err)
@@ -74,8 +76,8 @@ func Test_StatusioApi_SubscribersList(t *testing.T) {
 }
 
 func Test_StatusioApi_SubscribersRemove(t *testing.T) {
-	_, err := api.SubscriberRemove(statusio.Subscriber{
-		StatuspageID: STATUSPAGE_ID,
+	_, err := api.SubscriberRemove(Subscriber{
+		StatuspageID: statusPageID,
 		SubscriberID: id1,
 	})
 
@@ -88,9 +90,9 @@ func Test_StatusioApi_Metric_Update(t *testing.T) {
 	yesterday := time.Now().Add(-24 * time.Hour)
 	yesterday = time.Date(yesterday.Year(), yesterday.Month(), yesterday.Day(), 0, 0, 0, 0, yesterday.Location())
 
-	metric := statusio.Metric{
-		StatuspageID: STATUSPAGE_ID,
-		MetricID:     METRIC_ID,
+	metric := Metric{
+		StatuspageID: statusPageID,
+		MetricID:     metricID,
 		DayAvg:       22.58,
 		DayStart:     yesterday.Unix() * 1000,
 		DayDates:     []time.Time{},
@@ -128,21 +130,21 @@ func Test_StatusioApi_Metric_Update(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Schedule(t *testing.T) {
-	result, err := api.MaintenanceSchedule(statusio.Maintenance{
-		StatuspageID:       STATUSPAGE_ID,
-		InfrastructureAffected: COMPONENT_CONTAINER_COMBO,
-		MaintenanceName:    "Automated Test",
-		MaintenanceDetails: "Automated Test Details",
-		DatePlannedStart:   time.Now().Add(1 * time.Hour).Format("2020/01/02"),
-		TimePlannedStart:   time.Now().Add(1 * time.Hour).Format("15:04"),
-		DatePlannedEnd:     time.Now().Add(2 * time.Hour).Format("2020/01/02"),
-		TimePlannedEnd:     time.Now().Add(2 * time.Hour).Format("15:04"),
-    MaintenanceNotifyNow: "1",
-    MaintenanceNotify1Hr: "1",
-    MaintenanceNotify24Hr: "1",
-    MaintenanceNotify72Hr: "1",
-    Automation: "1",
-    AllInfrastructureAffected: "1",
+	result, err := api.MaintenanceSchedule(Maintenance{
+		StatuspageID:              statusPageID,
+		InfrastructureAffected:    componentContainerCombination,
+		MaintenanceName:           "Automated Test",
+		MaintenanceDetails:        "Automated Test Details",
+		DatePlannedStart:          time.Now().Add(1 * time.Hour).Format("2020/01/02"),
+		TimePlannedStart:          time.Now().Add(1 * time.Hour).Format("15:04"),
+		DatePlannedEnd:            time.Now().Add(2 * time.Hour).Format("2020/01/02"),
+		TimePlannedEnd:            time.Now().Add(2 * time.Hour).Format("15:04"),
+		MaintenanceNotifyNow:      "1",
+		MaintenanceNotify1Hr:      "1",
+		MaintenanceNotify24Hr:     "1",
+		MaintenanceNotify72Hr:     "1",
+		Automation:                "1",
+		AllInfrastructureAffected: "1",
 	})
 
 	if err != nil {
@@ -153,13 +155,13 @@ func Test_StatusioApi_Maintenance_Schedule(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_List(t *testing.T) {
-	result, err := api.MaintenanceList(STATUSPAGE_ID)
+	result, err := api.MaintenanceList(statusPageID)
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if len(result.Result.UpcomingMaintenances) <= 0 {
+	if len(result.Result.UpcomingMaintenances) == 0 {
 		t.Fatal("Upcoming events list is empty!")
 	}
 
@@ -171,7 +173,7 @@ func Test_StatusioApi_Maintenance_List(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Message(t *testing.T) {
-	_, err := api.MaintenanceMessage(STATUSPAGE_ID, id2)
+	_, err := api.MaintenanceMessage(statusPageID, id2)
 
 	if err != nil {
 		t.Fatal(err)
@@ -179,14 +181,14 @@ func Test_StatusioApi_Maintenance_Message(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Start(t *testing.T) {
-	_, err := api.MaintenanceStart(statusio.MaintenanceControl{
-		StatuspageID:       STATUSPAGE_ID,
+	_, err := api.MaintenanceStart(MaintenanceControl{
+		StatuspageID:       statusPageID,
 		MaintenanceID:      id1,
 		MaintenanceDetails: "Automated Test MaintenanceDetails START",
 		NotifyEmail:        "0",
-		NotifySms:        "0",
-		NotifyWebhook:        "0",
-		Social:        "0",
+		NotifySms:          "0",
+		NotifyWebhook:      "0",
+		Social:             "0",
 	})
 
 	if err != nil {
@@ -195,14 +197,14 @@ func Test_StatusioApi_Maintenance_Start(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Update(t *testing.T) {
-	_, err := api.MaintenanceUpdate(statusio.MaintenanceControl{
-		StatuspageID:       STATUSPAGE_ID,
+	_, err := api.MaintenanceUpdate(MaintenanceControl{
+		StatuspageID:       statusPageID,
 		MaintenanceID:      id1,
 		MaintenanceDetails: "Automated Test MaintenanceDetails UPDATE",
 		NotifyEmail:        "0",
-		NotifySms:        "0",
-		NotifyWebhook:        "0",
-		Social:        "0",
+		NotifySms:          "0",
+		NotifyWebhook:      "0",
+		Social:             "0",
 	})
 
 	if err != nil {
@@ -211,14 +213,14 @@ func Test_StatusioApi_Maintenance_Update(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Finish(t *testing.T) {
-	_, err := api.MaintenanceFinish(statusio.MaintenanceControl{
-		StatuspageID:       STATUSPAGE_ID,
+	_, err := api.MaintenanceFinish(MaintenanceControl{
+		StatuspageID:       statusPageID,
 		MaintenanceID:      id1,
 		MaintenanceDetails: "Automated Test MaintenanceDetails FINISH",
 		NotifyEmail:        "0",
-		NotifySms:        "0",
-		NotifyWebhook:        "0",
-		Social:        "0",
+		NotifySms:          "0",
+		NotifyWebhook:      "0",
+		Social:             "0",
 	})
 
 	if err != nil {
@@ -227,8 +229,8 @@ func Test_StatusioApi_Maintenance_Finish(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_Delete(t *testing.T) {
-	_, err := api.MaintenanceDelete(statusio.MaintenanceControl{
-		StatuspageID:  STATUSPAGE_ID,
+	_, err := api.MaintenanceDelete(MaintenanceControl{
+		StatuspageID:  statusPageID,
 		MaintenanceID: id1,
 	})
 
@@ -238,18 +240,18 @@ func Test_StatusioApi_Maintenance_Delete(t *testing.T) {
 }
 
 func Test_StatusioApi_Incident_Create(t *testing.T) {
-	result, err := api.IncidentCreate(statusio.Incident{
-		StatuspageID:    STATUSPAGE_ID,
-    AllInfrastructureAffected: "1",
-		InfrastructureAffected: COMPONENT_CONTAINER_COMBO,
-		IncidentName:    "Automated Test",
-		IncidentDetails: "Automated Test Details",
-		CurrentState:    statusio.STATE_INVESTIGATING,
-		CurrentStatus:   statusio.STATUS_OPERATIONAL,
-		NotifyEmail:        "0",
-		NotifySms:        "0",
-		NotifyWebhook:        "0",
-		Social:        "0",
+	result, err := api.IncidentCreate(Incident{
+		StatuspageID:              statusPageID,
+		AllInfrastructureAffected: "1",
+		InfrastructureAffected:    componentContainerCombination,
+		IncidentName:              "Automated Test",
+		IncidentDetails:           "Automated Test Details",
+		CurrentState:              STATE_INVESTIGATING,
+		CurrentStatus:             STATUS_OPERATIONAL,
+		NotifyEmail:               "0",
+		NotifySms:                 "0",
+		NotifyWebhook:             "0",
+		Social:                    "0",
 	})
 
 	if err != nil {
@@ -260,13 +262,13 @@ func Test_StatusioApi_Incident_Create(t *testing.T) {
 }
 
 func Test_StatusioApi_Incident_List(t *testing.T) {
-	result, err := api.IncidentList(STATUSPAGE_ID)
+	result, err := api.IncidentList(statusPageID)
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if len(result.Result.ActiveIncidents) <= 0 {
+	if len(result.Result.ActiveIncidents) == 0 {
 		t.Fatal("Active incidents list is empty!")
 	}
 
@@ -278,7 +280,7 @@ func Test_StatusioApi_Incident_List(t *testing.T) {
 }
 
 func Test_StatusioApi_Incident_Message(t *testing.T) {
-	_, err := api.IncidentMessage(STATUSPAGE_ID, id2)
+	_, err := api.IncidentMessage(statusPageID, id2)
 
 	if err != nil {
 		t.Fatal(err)
@@ -286,16 +288,16 @@ func Test_StatusioApi_Incident_Message(t *testing.T) {
 }
 
 func Test_StatusioApi_Incident_Update(t *testing.T) {
-	_, err := api.IncidentUpdate(statusio.Incident{
-		StatuspageID:    STATUSPAGE_ID,
+	_, err := api.IncidentUpdate(Incident{
+		StatuspageID:    statusPageID,
 		IncidentID:      id1,
 		IncidentDetails: "Automated Test Details Updated",
-		CurrentState:    statusio.STATE_IDENTIFIED,
-		CurrentStatus:   statusio.STATUS_OPERATIONAL,
-		NotifyEmail:        "0",
-		NotifySms:        "0",
-		NotifyWebhook:        "0",
-		Social:        "0",
+		CurrentState:    STATE_IDENTIFIED,
+		CurrentStatus:   STATUS_OPERATIONAL,
+		NotifyEmail:     "0",
+		NotifySms:       "0",
+		NotifyWebhook:   "0",
+		Social:          "0",
 	})
 
 	if err != nil {
@@ -304,14 +306,14 @@ func Test_StatusioApi_Incident_Update(t *testing.T) {
 }
 
 func Test_StatusioApi_Incident_Resolve(t *testing.T) {
-	_, err := api.IncidentResolve(statusio.Incident{
-		StatuspageID:    STATUSPAGE_ID,
+	_, err := api.IncidentResolve(Incident{
+		StatuspageID:    statusPageID,
 		IncidentID:      id1,
 		IncidentDetails: "Automated Test Details Resolved",
-		NotifyEmail:        "0",
-		NotifySms:        "0",
-		NotifyWebhook:        "0",
-		Social:        "0",
+		NotifyEmail:     "0",
+		NotifySms:       "0",
+		NotifyWebhook:   "0",
+		Social:          "0",
 	})
 
 	if err != nil {
@@ -320,8 +322,8 @@ func Test_StatusioApi_Incident_Resolve(t *testing.T) {
 }
 
 func Test_StatusioApi_Incident_Delete(t *testing.T) {
-	_, err := api.IncidentDelete(statusio.Incident{
-		StatuspageID: STATUSPAGE_ID,
+	_, err := api.IncidentDelete(Incident{
+		StatuspageID: statusPageID,
 		IncidentID:   id1,
 	})
 
@@ -331,7 +333,7 @@ func Test_StatusioApi_Incident_Delete(t *testing.T) {
 }
 
 func Test_StatusioApi_Component_List(t *testing.T) {
-	_, err := api.ComponentList(STATUSPAGE_ID)
+	_, err := api.ComponentList(statusPageID)
 
 	if err != nil {
 		t.Fatal(err)
@@ -339,12 +341,12 @@ func Test_StatusioApi_Component_List(t *testing.T) {
 }
 
 func Test_StatusioApi_Component_Update(t *testing.T) {
-	_, err := api.ComponentUpdate(statusio.ComponentStatus{
-		StatuspageID:  STATUSPAGE_ID,
-		Component:    COMPONENT,
-		Container:    CONTAINER,
+	_, err := api.ComponentUpdate(ComponentStatus{
+		StatuspageID:  statusPageID,
+		Component:     component,
+		Container:     container,
 		Details:       "Automated Test Update",
-		CurrentStatus: statusio.STATUS_DEGRADED_PERFORMANCE,
+		CurrentStatus: STATUS_DEGRADED_PERFORMANCE,
 	})
 
 	if err != nil {

@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-func (a StatusioApi) ComponentList(statuspage_id string) (r ComponentListResponse, err error) {
-	err = a.apiRequest("GET", fmt.Sprintf("component/list/%s", statuspage_id), nil, &r)
+func (a StatusioApi) ComponentList(statusPageID string) (r ComponentListResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("component/list/%s", statusPageID), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}

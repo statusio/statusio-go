@@ -29,7 +29,6 @@ package statusio
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net/http"
 )
@@ -62,22 +61,22 @@ func (a StatusioApi) apiRequest(method string, resource string, data interface{}
 	)
 
 	if data != nil {
-		b, err := json.Marshal(data)
-		if err != nil {
-			return err
+		b, marshalErr := json.Marshal(data)
+		if marshalErr != nil {
+			return marshalErr
 		}
 		req, err = http.NewRequest(method, fmt.Sprintf("%s%s", a.baseUrl, resource), bytes.NewReader(b))
 	} else {
 		req, err = http.NewRequest(method, fmt.Sprintf("%s%s", a.baseUrl, resource), nil)
 	}
 
-	req.Header.Set("x-api-id", a.ApiId)
-	req.Header.Set("x-api-key", a.ApiKey)
-	req.Header.Set("Content-Type", "application/json")
-
 	if err != nil {
 		return err
 	}
+
+	req.Header.Set("x-api-id", a.ApiId)
+	req.Header.Set("x-api-key", a.ApiKey)
+	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := a.HttpClient.Do(req)
 	if err != nil {
@@ -86,7 +85,7 @@ func (a StatusioApi) apiRequest(method string, resource string, data interface{}
 	defer resp.Body.Close()
 
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-		return errors.New(fmt.Sprintf("Response status code is %d", resp.StatusCode))
+		return fmt.Errorf("response status code is %d", resp.StatusCode)
 	}
 	return json.NewDecoder(resp.Body).Decode(result)
 }
