@@ -5,32 +5,32 @@ import (
 	"fmt"
 )
 
-func (a StatusioApi) IncidentList(statuspage_id string) (r IncidentListResponse, err error) {
-	err = a.apiRequest("GET", fmt.Sprintf("incident/list/%s", statuspage_id), nil, &r)
+func (a StatusioApi) IncidentList(statusPageID string) (r IncidentListResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("incident/list/%s", statusPageID), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}
 	return r, err
 }
 
-func (a StatusioApi) IncidentListByID(statuspage_id string) (r IncidentListByIDResponse, err error) {
-	err = a.apiRequest("GET", fmt.Sprintf("incidents/%s", statuspage_id), nil, &r)
+func (a StatusioApi) IncidentListByID(statusPageID string) (r IncidentListByIDResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("incidents/%s", statusPageID), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}
 	return r, err
 }
 
-func (a StatusioApi) IncidentMessage(statuspage_id string, message_id string) (r IncidentMessageResponse, err error) {
-	err = a.apiRequest("GET", fmt.Sprintf("incident/message/%s/%s", statuspage_id, message_id), nil, &r)
+func (a StatusioApi) IncidentMessage(statusPageID, messageID string) (r IncidentMessageResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("incident/message/%s/%s", statusPageID, messageID), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}
 	return r, err
 }
 
-func (a StatusioApi) IncidentSingle(statuspage_id string, incident_id string) (r IncidentSingleResponse, err error) {
-	err = a.apiRequest("GET", fmt.Sprintf("incident/%s/%s", statuspage_id, incident_id), nil, &r)
+func (a StatusioApi) IncidentSingle(statusPageID, incidentID string) (r IncidentSingleResponse, err error) {
+	err = a.apiRequest("GET", fmt.Sprintf("incident/%s/%s", statusPageID, incidentID), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}

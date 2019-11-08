@@ -29,23 +29,41 @@ package statusio
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net/http"
 )
 
 const (
-	BaseUrlV2 = "https://api.status.io/v2/"
+	baseURLV2 = "https://api.status.io/v2/"
 
-	STATE_INVESTIGATING = 100
-	STATE_IDENTIFIED    = 200
-	STATE_MONITORING    = 300
+	STATE_INVESTIGATING = 100 // Deprecated: use StateInvestigating instead
+	STATE_IDENTIFIED    = 200 // Deprecated: use StateIdentified instead
+	STATE_MONITORING    = 300 // Deprecated: use StateMonitoring instead
 
-	STATUS_OPERATIONAL                = 100
-	STATUS_DEGRADED_PERFORMANCE       = 300
-	STATUS_PARTIAL_SERVICE_DISRUPTION = 400
-	STATUS_SERVICE_DISRUPTION         = 500
-	STATUS_SECURITY_EVENT             = 600
+	STATUS_OPERATIONAL                = 100 // Deprecated: use StatusOperational instead
+	STATUS_DEGRADED_PERFORMANCE       = 300 // Deprecated: use StatusDegradedPerformance instead
+	STATUS_PARTIAL_SERVICE_DISRUPTION = 400 // Deprecated: use StatusPartialServiceDisruption instead
+	STATUS_SERVICE_DISRUPTION         = 500 // Deprecated: use StatusServiceDisruption instead
+	STATUS_SECURITY_EVENT             = 600 // Deprecated: use StatusSecurityEvent instead
+)
+
+type State int
+type Status int
+
+// State enum values
+var (
+	StateInvestigating State = 100
+	StateIdentified    State = 200
+	StateMonitoring    State = 300
+)
+
+// Status enum values
+var (
+	StatusOperational              Status = 100
+	StatusDegradedPerformance      Status = 300
+	StatusPartialServiceDisruption Status = 300
+	StatusServiceDisruption        Status = 500
+	StatusSecurityEvent            Status = 600
 )
 
 type StatusioApi struct {
@@ -62,22 +80,22 @@ func (a StatusioApi) apiRequest(method string, resource string, data interface{}
 	)
 
 	if data != nil {
-		b, err := json.Marshal(data)
-		if err != nil {
-			return err
+		b, marshalErr := json.Marshal(data)
+		if marshalErr != nil {
+			return marshalErr
 		}
 		req, err = http.NewRequest(method, fmt.Sprintf("%s%s", a.baseUrl, resource), bytes.NewReader(b))
 	} else {
 		req, err = http.NewRequest(method, fmt.Sprintf("%s%s", a.baseUrl, resource), nil)
 	}
 
-	req.Header.Set("x-api-id", a.ApiId)
-	req.Header.Set("x-api-key", a.ApiKey)
-	req.Header.Set("Content-Type", "application/json")
-
 	if err != nil {
 		return err
 	}
+
+	req.Header.Set("x-api-id", a.ApiId)
+	req.Header.Set("x-api-key", a.ApiKey)
+	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := a.HttpClient.Do(req)
 	if err != nil {
@@ -86,7 +104,7 @@ func (a StatusioApi) apiRequest(method string, resource string, data interface{}
 	defer resp.Body.Close()
 
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-		return errors.New(fmt.Sprintf("Response status code is %d", resp.StatusCode))
+		return fmt.Errorf("response status code is %d", resp.StatusCode)
 	}
 	return json.NewDecoder(resp.Body).Decode(result)
 }
@@ -96,7 +114,7 @@ func NewStatusioApi(api_id string, api_key string) *StatusioApi {
 		ApiId:      api_id,
 		ApiKey:     api_key,
 		HttpClient: http.DefaultClient,
-		baseUrl:    BaseUrlV2,
+		baseUrl:    baseURLV2,
 	}
 	return c
 }

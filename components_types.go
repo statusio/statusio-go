@@ -1,11 +1,11 @@
 package statusio
 
 type ComponentStatus struct {
-	StatuspageID  string   `json:"statuspage_id"`
-	Component     string   `json:"component"`
-	Container     string   `json:"container"`
-	Details       string   `json:"details"`
-	CurrentStatus int      `json:"current_status"`
+	StatuspageID  string `json:"statuspage_id"`
+	Component     string `json:"component"`
+	Container     string `json:"container"`
+	Details       string `json:"details"`
+	CurrentStatus Status `json:"current_status"`
 }
 
 type ComponentListResponse struct {

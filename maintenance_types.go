@@ -4,9 +4,9 @@ import "time"
 
 type Maintenance struct {
 	StatuspageID              string   `json:"statuspage_id"`
-	AllInfrastructureAffected string      `json:"all_infrastructure_affected,omitempty"`
+	AllInfrastructureAffected string   `json:"all_infrastructure_affected,omitempty"`
 	InfrastructureAffected    []string `json:"infrastructure_affected"`
-	Automation                string      `json:"automation"`
+	Automation                string   `json:"automation"`
 	MaintenanceName           string   `json:"maintenance_name"`
 	MaintenanceDetails        string   `json:"maintenance_details"`
 	DatePlannedStart          string   `json:"date_planned_start"`
@@ -23,23 +23,23 @@ type MaintenanceControl struct {
 	StatuspageID       string `json:"statuspage_id"`
 	MaintenanceID      string `json:"maintenance_id"`
 	MaintenanceDetails string `json:"maintenance_details,omitempty"`
-	NotifyEmail        string    `json:"notify_email"`
-	NotifySms          string    `json:"notify_sms"`
-	NotifyWebhook      string    `json:"notify_webhook"`
-	Social             string    `json:"social"`
-	Irc                string    `json:"irc,omitempty"`
-	Hipchat            string    `json:"hipchat,omitempty"`
-	Slack              string    `json:"slack,omitempty"`
+	NotifyEmail        string `json:"notify_email"`
+	NotifySms          string `json:"notify_sms"`
+	NotifyWebhook      string `json:"notify_webhook"`
+	Social             string `json:"social"`
+	Irc                string `json:"irc,omitempty"`
+	Hipchat            string `json:"hipchat,omitempty"`
+	Slack              string `json:"slack,omitempty"`
 }
 
 type MaintenanceResponse struct {
 	V                  int    `json:"__v"`
 	ID                 string `json:"_id"`
 	ComponentsAffected []struct {
-		V          int    `json:"__v"`
-		ID         string `json:"_id"`
-		Position   int    `json:"position"`
-		Statuspage string `json:"statuspage"`
+		V          int      `json:"__v"`
+		ID         string   `json:"_id"`
+		Position   int      `json:"position"`
+		Statuspage string   `json:"statuspage"`
 		Containers []string `json:"containers"`
 		Name       string   `json:"name"`
 	} `json:"components_affected"`
