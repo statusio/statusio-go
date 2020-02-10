@@ -7,6 +7,7 @@ type Incident struct {
 	IncidentID                string   `json:"incident_id,omitempty"`
 	IncidentName              string   `json:"incident_name,omitempty"`
 	IncidentDetails           string   `json:"incident_details"`
+	MessageSubject            string   `json:"message_subject,omitempty"`
 	NotifyEmail               string   `json:"notify_email"`
 	NotifySms                 string   `json:"notify_sms"`
 	NotifyWebhook             string   `json:"notify_webhook"`

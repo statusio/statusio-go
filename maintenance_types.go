@@ -9,6 +9,7 @@ type Maintenance struct {
 	Automation                string   `json:"automation"`
 	MaintenanceName           string   `json:"maintenance_name"`
 	MaintenanceDetails        string   `json:"maintenance_details"`
+	MessageSubject            string   `json:"message_subject,omitempty"`
 	DatePlannedStart          string   `json:"date_planned_start"`
 	TimePlannedStart          string   `json:"time_planned_start"`
 	DatePlannedEnd            string   `json:"date_planned_end"`
@@ -23,6 +24,7 @@ type MaintenanceControl struct {
 	StatuspageID       string `json:"statuspage_id"`
 	MaintenanceID      string `json:"maintenance_id"`
 	MaintenanceDetails string `json:"maintenance_details,omitempty"`
+	MessageSubject     string   `json:"message_subject,omitempty"`
 	NotifyEmail        string `json:"notify_email"`
 	NotifySms          string `json:"notify_sms"`
 	NotifyWebhook      string `json:"notify_webhook"`
