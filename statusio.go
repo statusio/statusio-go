@@ -61,7 +61,7 @@ var (
 var (
 	StatusOperational              Status = 100
 	StatusDegradedPerformance      Status = 300
-	StatusPartialServiceDisruption Status = 300
+	StatusPartialServiceDisruption Status = 400
 	StatusServiceDisruption        Status = 500
 	StatusSecurityEvent            Status = 600
 )
