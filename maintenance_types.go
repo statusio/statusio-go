@@ -102,7 +102,7 @@ type MaintenanceSingleResponse struct {
 		Error   string `json:"error"`
 		Message string `json:"message"`
 	} `json:"status"`
-	Result []MaintenanceResponse `json:"result"`
+	Result MaintenanceResponse `json:"result"`
 }
 
 type MaintenanceMessageResponse struct {
