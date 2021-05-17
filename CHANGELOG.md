@@ -1,10 +1,13 @@
 ## Change Log
 
+### v1.9.1 (2021/5/17)
+- Added Microsoft Teams
+
 ### v1.9.0 (2020/11/16)
-- fix unmarshal of MaintenanceSingleResponse (@danielb42)
+- Fix unmarshal of MaintenanceSingleResponse (@danielb42)
 
 ### v1.8.0 (2020/4/13)
-- set module name to be the same as repo name (@drornir)
+- Set module name to be the same as repo name (@drornir)
 - Fix StatusPartialServiceDisruption value (@drornir)
 
 

@@ -31,6 +31,7 @@ type MaintenanceControl struct {
 	Social             string `json:"social"`
 	Irc                string `json:"irc,omitempty"`
 	Hipchat            string `json:"hipchat,omitempty"`
+	Msteams            string `json:"msteams,omitempty"`
 	Slack              string `json:"slack,omitempty"`
 }
 
