@@ -41,6 +41,7 @@ const (
 	STATE_MONITORING    = 300 // Deprecated: use StateMonitoring instead
 
 	STATUS_OPERATIONAL                = 100 // Deprecated: use StatusOperational instead
+	STATUS_PLANNED_MAINTENANCE        = 200 // Deprecated: use StatusPlannedMaintenance instead
 	STATUS_DEGRADED_PERFORMANCE       = 300 // Deprecated: use StatusDegradedPerformance instead
 	STATUS_PARTIAL_SERVICE_DISRUPTION = 400 // Deprecated: use StatusPartialServiceDisruption instead
 	STATUS_SERVICE_DISRUPTION         = 500 // Deprecated: use StatusServiceDisruption instead
@@ -60,6 +61,7 @@ var (
 // Status enum values
 var (
 	StatusOperational              Status = 100
+	StatusPlannedMaintenance       Status = 200
 	StatusDegradedPerformance      Status = 300
 	StatusPartialServiceDisruption Status = 400
 	StatusServiceDisruption        Status = 500
