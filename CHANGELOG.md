@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.9.2 (2021/9/6)
+- Added LICENSE
+
 ### v1.9.1 (2021/5/17)
 - Added Microsoft Teams
 
