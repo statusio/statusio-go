@@ -1,5 +1,9 @@
 ## Change Log
 
+### v1.9.3 (2021/9/22)
+- Added the silent flag to the subscriber/add method (@jc-dgit)
+- Changed the subscriber/add granular field to be optional (@jc-dgit)
+
 ### v1.9.2 (2021/9/6)
 - Added LICENSE
 
