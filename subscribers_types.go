@@ -9,7 +9,8 @@ type Subscriber struct {
 	SubscriberID string `json:"subscriber_id,omitempty"`
 	Method       string `json:"method"`
 	Address      string `json:"address"`
-	Granular     string `json:"granular"`
+	Silent       string `json:"silent,omitempty"`
+	Granular     string `json:"granular,omitempty"`
 }
 
 type SubscriberResponse struct {

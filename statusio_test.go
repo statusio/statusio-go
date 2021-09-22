@@ -39,6 +39,7 @@ func Test_StatusioApi_SubscribersAdd(t *testing.T) {
 		StatuspageID: statusPageID,
 		Method:       "email",
 		Address:      "test@example.com",
+		Silent:       "1",
 		Granular:     "",
 	})
 
@@ -55,6 +56,7 @@ func Test_StatusioApi_SubscribersUpdate(t *testing.T) {
 		SubscriberID: id1,
 		Method:       "email",
 		Address:      "test@example.com",
+		Silent:       "1",
 		Granular:     "",
 	})
 
