@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.9.4 (2023/11/22)
+- Added the PostMortemUrl to the incident response (@gsalingu)
+
 ### v1.9.3 (2021/9/22)
 - Added the silent flag to the subscriber/add method (@jc-dgit)
 - Changed the subscriber/add granular field to be optional (@jc-dgit)
