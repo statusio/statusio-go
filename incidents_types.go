@@ -55,8 +55,9 @@ type IncidentResponse struct {
 		Containers []string  `json:"containers"`
 		Components []string  `json:"components"`
 	} `json:"messages"`
-	Name       string `json:"name"`
-	Statuspage string `json:"statuspage"`
+	Name          string `json:"name"`
+	PostMortemUrl string `json:"post_mortem_url"`
+	Statuspage    string `json:"statuspage"`
 }
 
 type IncidentListResponse struct {
