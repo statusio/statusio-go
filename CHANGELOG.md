@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.9.5 (2025/5/19)
+- Added the incident/list/active method
+
 ### v1.9.4 (2023/11/22)
 - Added the PostMortemUrl to the incident response (@gsalingu)
 
