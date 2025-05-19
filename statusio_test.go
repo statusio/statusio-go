@@ -286,6 +286,21 @@ func Test_StatusioApi_Incident_List(t *testing.T) {
 	id2 = result.Result.ActiveIncidents[0].Messages[0].ID
 }
 
+func Test_StatusioApi_Incident_ListActive(t *testing.T) {
+	// Test with pagination and date range
+	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
+	endDate := time.Now().Unix() * 1000                        // now
+	
+	result, err := api.IncidentListActive(statusPageID, 1, startDate, endDate)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Just print the raw response
+	t.Logf("\nRaw Response:\n%+v", result)
+}
+
 func Test_StatusioApi_Incident_Message(t *testing.T) {
 	_, err := api.IncidentMessage(statusPageID, id2)
 

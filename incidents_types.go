@@ -23,9 +23,10 @@ type Incident struct {
 }
 
 type IncidentResponse struct {
-	V                  int    `json:"__v"`
-	ID                 string `json:"_id"`
-	ComponentsAffected []struct {
+	V                    int             `json:"__v"`
+	ID                   string          `json:"_id"`
+	InfrastructureAffected interface{}   `json:"infrastructure_affected"`
+	ComponentsAffected  []struct {
 		V          int      `json:"__v"`
 		ID         string   `json:"_id"`
 		Position   int      `json:"position"`
