@@ -1,5 +1,11 @@
 ## Change Log
 
+### v1.9.6 (2025/5/28)
+- Added the incident/list/resolved method
+- Added the maintenance/list/active pending
+- Added the maintenance/list/active method
+- Added the maintenance/list/active closed
+
 ### v1.9.5 (2025/5/19)
 - Added the incident/list/active method
 
