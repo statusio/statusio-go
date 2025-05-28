@@ -21,8 +21,32 @@ func (a StatusioApi) IncidentListActive(statusPageID string, page int, startDate
 	if endDate > 0 {
 		queryParams += fmt.Sprintf("&end_date=%d", endDate)
 	}
-	
+
 	err = a.apiRequest("GET", fmt.Sprintf("incident/list/active/%s%s", statusPageID, queryParams), nil, &r)
+	if r.Status.Error != "no" {
+		err = errors.New(r.Status.Message)
+	}
+	return r, err
+}
+
+type IncidentListResolvedResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result []IncidentResponse `json:"result"`
+}
+
+func (a StatusioApi) IncidentListResolved(statusPageID string, page int, startDate, endDate int64) (r IncidentListResolvedResponse, err error) {
+	queryParams := fmt.Sprintf("?page=%d", page)
+	if startDate > 0 {
+		queryParams += fmt.Sprintf("&start_date=%d", startDate)
+	}
+	if endDate > 0 {
+		queryParams += fmt.Sprintf("&end_date=%d", endDate)
+	}
+
+	err = a.apiRequest("GET", fmt.Sprintf("incident/list/resolved/%s%s", statusPageID, queryParams), nil, &r)
 	if r.Status.Error != "no" {
 		err = errors.New(r.Status.Message)
 	}
@@ -92,4 +116,3 @@ func (a StatusioApi) IncidentDelete(incident Incident) (r IncidentDeleteResponse
 	}
 	return r, err
 }
-
