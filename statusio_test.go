@@ -175,6 +175,51 @@ func Test_StatusioApi_Maintenance_List(t *testing.T) {
 	id2 = result.Result.UpcomingMaintenances[0].Messages[0].ID
 }
 
+func Test_StatusioApi_Maintenance_ListActive(t *testing.T) {
+	// Test with pagination and date range
+	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
+	endDate := time.Now().Unix() * 1000                        // now
+	
+	result, err := api.MaintenanceListActive(statusPageID, 1, startDate, endDate)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Just print the raw response
+	t.Logf("\nRaw Response:\n%+v", result)
+}
+
+func Test_StatusioApi_Maintenance_ListPending(t *testing.T) {
+	// Test with pagination and date range
+	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
+	endDate := time.Now().Unix() * 1000                        // now
+	
+	result, err := api.MaintenanceListPending(statusPageID, 1, startDate, endDate)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Just print the raw response
+	t.Logf("\nRaw Response:\n%+v", result)
+}
+
+func Test_StatusioApi_Maintenance_ListClosed(t *testing.T) {
+	// Test with pagination and date range
+	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
+	endDate := time.Now().Unix() * 1000                        // now
+	
+	result, err := api.MaintenanceListClosed(statusPageID, 1, startDate, endDate)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Just print the raw response
+	t.Logf("\nRaw Response:\n%+v", result)
+}
+
 func Test_StatusioApi_Maintenance_Message(t *testing.T) {
 	_, err := api.MaintenanceMessage(statusPageID, id2)
 
@@ -292,6 +337,21 @@ func Test_StatusioApi_Incident_ListActive(t *testing.T) {
 	endDate := time.Now().Unix() * 1000                        // now
 	
 	result, err := api.IncidentListActive(statusPageID, 1, startDate, endDate)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Just print the raw response
+	t.Logf("\nRaw Response:\n%+v", result)
+}
+
+func Test_StatusioApi_Incident_ListResolved(t *testing.T) {
+	// Test with pagination and date range
+	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
+	endDate := time.Now().Unix() * 1000                        // now
+	
+	result, err := api.IncidentListResolved(statusPageID, 1, startDate, endDate)
 
 	if err != nil {
 		t.Fatal(err)

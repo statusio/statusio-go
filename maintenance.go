@@ -13,6 +13,54 @@ func (a StatusioApi) MaintenanceList(statusPageID string) (r MaintenanceListResp
 	return r, err
 }
 
+func (a StatusioApi) MaintenanceListActive(statusPageID string, page int, startDate, endDate int64) (r MaintenanceListActiveResponse, err error) {
+	queryParams := fmt.Sprintf("?page=%d", page)
+	if startDate > 0 {
+		queryParams += fmt.Sprintf("&start_date=%d", startDate)
+	}
+	if endDate > 0 {
+		queryParams += fmt.Sprintf("&end_date=%d", endDate)
+	}
+	
+	err = a.apiRequest("GET", fmt.Sprintf("maintenance/list/active/%s%s", statusPageID, queryParams), nil, &r)
+	if r.Status.Error != "no" {
+		err = errors.New(r.Status.Message)
+	}
+	return r, err
+}
+
+func (a StatusioApi) MaintenanceListPending(statusPageID string, page int, startDate, endDate int64) (r MaintenanceListPendingResponse, err error) {
+	queryParams := fmt.Sprintf("?page=%d", page)
+	if startDate > 0 {
+		queryParams += fmt.Sprintf("&start_date=%d", startDate)
+	}
+	if endDate > 0 {
+		queryParams += fmt.Sprintf("&end_date=%d", endDate)
+	}
+	
+	err = a.apiRequest("GET", fmt.Sprintf("maintenance/list/pending/%s%s", statusPageID, queryParams), nil, &r)
+	if r.Status.Error != "no" {
+		err = errors.New(r.Status.Message)
+	}
+	return r, err
+}
+
+func (a StatusioApi) MaintenanceListClosed(statusPageID string, page int, startDate, endDate int64) (r MaintenanceListClosedResponse, err error) {
+	queryParams := fmt.Sprintf("?page=%d", page)
+	if startDate > 0 {
+		queryParams += fmt.Sprintf("&start_date=%d", startDate)
+	}
+	if endDate > 0 {
+		queryParams += fmt.Sprintf("&end_date=%d", endDate)
+	}
+	
+	err = a.apiRequest("GET", fmt.Sprintf("maintenance/list/closed/%s%s", statusPageID, queryParams), nil, &r)
+	if r.Status.Error != "no" {
+		err = errors.New(r.Status.Message)
+	}
+	return r, err
+}
+
 func (a StatusioApi) MaintenanceListByID(statusPageID string) (r MaintenanceListByIDResponse, err error) {
 	err = a.apiRequest("GET", fmt.Sprintf("maintenances/%s", statusPageID), nil, &r)
 	if r.Status.Error != "no" {

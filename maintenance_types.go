@@ -86,6 +86,30 @@ type MaintenanceListResponse struct {
 	} `json:"result"`
 }
 
+type MaintenanceListActiveResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result []MaintenanceResponse `json:"result"`
+}
+
+type MaintenanceListPendingResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result []MaintenanceResponse `json:"result"`
+}
+
+type MaintenanceListClosedResponse struct {
+	Status struct {
+		Error   string `json:"error"`
+		Message string `json:"message"`
+	} `json:"status"`
+	Result []MaintenanceResponse `json:"result"`
+}
+
 type MaintenanceListByIDResponse struct {
 	Status struct {
 		Error   string `json:"error"`
