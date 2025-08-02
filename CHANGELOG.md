@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.9.7 (2025/8/2)
+- Removed the parameters (start_date, end_date) from incident/list/* and maintenance/list/*
+
 ### v1.9.6 (2025/5/28)
 - Added the incident/list/resolved method
 - Added the maintenance/list/active pending
