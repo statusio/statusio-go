@@ -21,14 +21,8 @@ type IncidentListResolvedResponse struct {
 	Result []IncidentResponse `json:"result"`
 }
 
-func (a StatusioApi) IncidentListActive(statusPageID string, page int, startDate, endDate int64) (r IncidentListActiveResponse, err error) {
+func (a StatusioApi) IncidentListActive(statusPageID string, page int) (r IncidentListActiveResponse, err error) {
 	queryParams := fmt.Sprintf("?page=%d", page)
-	if startDate > 0 {
-		queryParams += fmt.Sprintf("&start_date=%d", startDate)
-	}
-	if endDate > 0 {
-		queryParams += fmt.Sprintf("&end_date=%d", endDate)
-	}
 	
 	err = a.apiRequest("GET", fmt.Sprintf("incident/list/active/%s%s", statusPageID, queryParams), nil, &r)
 	if r.Status.Error != "no" {
@@ -37,14 +31,8 @@ func (a StatusioApi) IncidentListActive(statusPageID string, page int, startDate
 	return r, err
 }
 
-func (a StatusioApi) IncidentListResolved(statusPageID string, page int, startDate, endDate int64) (r IncidentListResolvedResponse, err error) {
+func (a StatusioApi) IncidentListResolved(statusPageID string, page int) (r IncidentListResolvedResponse, err error) {
 	queryParams := fmt.Sprintf("?page=%d", page)
-	if startDate > 0 {
-		queryParams += fmt.Sprintf("&start_date=%d", startDate)
-	}
-	if endDate > 0 {
-		queryParams += fmt.Sprintf("&end_date=%d", endDate)
-	}
 	
 	err = a.apiRequest("GET", fmt.Sprintf("incident/list/resolved/%s%s", statusPageID, queryParams), nil, &r)
 	if r.Status.Error != "no" {

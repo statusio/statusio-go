@@ -176,11 +176,8 @@ func Test_StatusioApi_Maintenance_List(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_ListActive(t *testing.T) {
-	// Test with pagination and date range
-	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
-	endDate := time.Now().Unix() * 1000                        // now
-	
-	result, err := api.MaintenanceListActive(statusPageID, 1, startDate, endDate)
+	// Test with pagination
+	result, err := api.MaintenanceListActive(statusPageID, 1)
 
 	if err != nil {
 		t.Fatal(err)
@@ -191,11 +188,8 @@ func Test_StatusioApi_Maintenance_ListActive(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_ListPending(t *testing.T) {
-	// Test with pagination and date range
-	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
-	endDate := time.Now().Unix() * 1000                        // now
-	
-	result, err := api.MaintenanceListPending(statusPageID, 1, startDate, endDate)
+	// Test with pagination
+	result, err := api.MaintenanceListPending(statusPageID, 1)
 
 	if err != nil {
 		t.Fatal(err)
@@ -206,11 +200,8 @@ func Test_StatusioApi_Maintenance_ListPending(t *testing.T) {
 }
 
 func Test_StatusioApi_Maintenance_ListClosed(t *testing.T) {
-	// Test with pagination and date range
-	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
-	endDate := time.Now().Unix() * 1000                        // now
-	
-	result, err := api.MaintenanceListClosed(statusPageID, 1, startDate, endDate)
+	// Test with pagination
+	result, err := api.MaintenanceListClosed(statusPageID, 1)
 
 	if err != nil {
 		t.Fatal(err)
@@ -332,11 +323,8 @@ func Test_StatusioApi_Incident_List(t *testing.T) {
 }
 
 func Test_StatusioApi_Incident_ListActive(t *testing.T) {
-	// Test with pagination and date range
-	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
-	endDate := time.Now().Unix() * 1000                        // now
-	
-	result, err := api.IncidentListActive(statusPageID, 1, startDate, endDate)
+	// Test with pagination
+	result, err := api.IncidentListActive(statusPageID, 1)
 
 	if err != nil {
 		t.Fatal(err)
@@ -347,11 +335,8 @@ func Test_StatusioApi_Incident_ListActive(t *testing.T) {
 }
 
 func Test_StatusioApi_Incident_ListResolved(t *testing.T) {
-	// Test with pagination and date range
-	startDate := time.Now().Add(-24 * time.Hour).Unix() * 1000 // 24 hours ago
-	endDate := time.Now().Unix() * 1000                        // now
-	
-	result, err := api.IncidentListResolved(statusPageID, 1, startDate, endDate)
+	// Test with pagination
+	result, err := api.IncidentListResolved(statusPageID, 1)
 
 	if err != nil {
 		t.Fatal(err)

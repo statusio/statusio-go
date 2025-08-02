@@ -13,14 +13,8 @@ func (a StatusioApi) MaintenanceList(statusPageID string) (r MaintenanceListResp
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceListActive(statusPageID string, page int, startDate, endDate int64) (r MaintenanceListActiveResponse, err error) {
+func (a StatusioApi) MaintenanceListActive(statusPageID string, page int) (r MaintenanceListActiveResponse, err error) {
 	queryParams := fmt.Sprintf("?page=%d", page)
-	if startDate > 0 {
-		queryParams += fmt.Sprintf("&start_date=%d", startDate)
-	}
-	if endDate > 0 {
-		queryParams += fmt.Sprintf("&end_date=%d", endDate)
-	}
 	
 	err = a.apiRequest("GET", fmt.Sprintf("maintenance/list/active/%s%s", statusPageID, queryParams), nil, &r)
 	if r.Status.Error != "no" {
@@ -29,14 +23,8 @@ func (a StatusioApi) MaintenanceListActive(statusPageID string, page int, startD
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceListPending(statusPageID string, page int, startDate, endDate int64) (r MaintenanceListPendingResponse, err error) {
+func (a StatusioApi) MaintenanceListPending(statusPageID string, page int) (r MaintenanceListPendingResponse, err error) {
 	queryParams := fmt.Sprintf("?page=%d", page)
-	if startDate > 0 {
-		queryParams += fmt.Sprintf("&start_date=%d", startDate)
-	}
-	if endDate > 0 {
-		queryParams += fmt.Sprintf("&end_date=%d", endDate)
-	}
 	
 	err = a.apiRequest("GET", fmt.Sprintf("maintenance/list/pending/%s%s", statusPageID, queryParams), nil, &r)
 	if r.Status.Error != "no" {
@@ -45,14 +33,8 @@ func (a StatusioApi) MaintenanceListPending(statusPageID string, page int, start
 	return r, err
 }
 
-func (a StatusioApi) MaintenanceListClosed(statusPageID string, page int, startDate, endDate int64) (r MaintenanceListClosedResponse, err error) {
+func (a StatusioApi) MaintenanceListClosed(statusPageID string, page int) (r MaintenanceListClosedResponse, err error) {
 	queryParams := fmt.Sprintf("?page=%d", page)
-	if startDate > 0 {
-		queryParams += fmt.Sprintf("&start_date=%d", startDate)
-	}
-	if endDate > 0 {
-		queryParams += fmt.Sprintf("&end_date=%d", endDate)
-	}
 	
 	err = a.apiRequest("GET", fmt.Sprintf("maintenance/list/closed/%s%s", statusPageID, queryParams), nil, &r)
 	if r.Status.Error != "no" {
